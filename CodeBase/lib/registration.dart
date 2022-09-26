@@ -104,7 +104,6 @@ class _MyRegisterState extends State<MyRegister> {
                           TextField(
                             controller: myControllerLinkedInID,
                             style: TextStyle(color: Colors.white),
-                            obscureText: true,
                             decoration: InputDecoration(
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
@@ -141,6 +140,7 @@ class _MyRegisterState extends State<MyRegister> {
                                           'email', myControllerEmail.text);
                                       box.write('linkedin',
                                           myControllerLinkedInID.text);
+                                      Navigator.pushNamed(context, 'home');
                                     },
                                     icon: Icon(
                                       Icons.arrow_forward,
