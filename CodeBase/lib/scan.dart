@@ -17,7 +17,6 @@ class _QRViewExampleState extends State<ScanScreen> {
   Barcode? result;
   QRViewController? controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-  final Uri _url = Uri.parse('https://www.linkedin.com/in/pranav-gajjar');
 
   @override
   void reassemble() {
@@ -145,18 +144,14 @@ class _QRViewExampleState extends State<ScanScreen> {
     setState(() {
       this.controller = controller;
     });
+    controller.resumeCamera();
     controller.scannedDataStream.listen((scanData) {
       setState(() {
         result = scanData;
-        print("hello");
-        print(result!.code);
-        launchUrl(_url);
-        // if(result!.code!=null)
-        // {
-        //   Uri _url = Uri.parse(result!.code);
-        // // _url=Uri.parse(result!.code);
-        // launchUrl(_url);
-        // }
+        if (result!.code != null) {
+          Uri _url = Uri.parse((result!.code).toString());
+          launchUrl(_url);
+        }
       });
     });
   }
