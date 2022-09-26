@@ -37,10 +37,7 @@ class _CreateScreenState extends State<Home> {
           // link
           ElevatedButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const SecondRoute()),
-              );
+              Navigator.pushNamed(context, 'scan');
             },
             child: Text('Expand your network'),
           ),
