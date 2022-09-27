@@ -30,6 +30,12 @@ class _QRViewExampleState extends State<ScanScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        title: Text("Scan QR Code"),
+        elevation: 0,
+      ),
       body: Column(
         children: <Widget>[
           Expanded(flex: 4, child: _buildQrView(context)),
@@ -42,7 +48,9 @@ class _QRViewExampleState extends State<ScanScreen> {
                 children: <Widget>[
                   if (result != null)
                     Text(
-                        'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
+                      'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}',
+                      style: TextStyle(color: Colors.white),
+                    )
                   else
                     const Text('Scan a code'),
                   Row(
@@ -52,20 +60,12 @@ class _QRViewExampleState extends State<ScanScreen> {
                       Container(
                         margin: const EdgeInsets.all(8),
                         child: ElevatedButton(
-                            onPressed: () async {
-                              await controller?.toggleFlash();
-                              setState(() {});
-                            },
-                            child: FutureBuilder(
-                              future: controller?.getFlashStatus(),
-                              builder: (context, snapshot) {
-                                return Text('Flash: ${snapshot.data}');
-                              },
-                            )),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.all(8),
-                        child: ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.resolveWith((states) {
+                                return Colors.white;
+                              }),
+                            ),
                             onPressed: () async {
                               await controller?.flipCamera();
                               setState(() {});
@@ -75,9 +75,18 @@ class _QRViewExampleState extends State<ScanScreen> {
                               builder: (context, snapshot) {
                                 if (snapshot.data != null) {
                                   return Text(
-                                      'Camera facing ${describeEnum(snapshot.data!)}');
+                                    'Camera facing ${describeEnum(snapshot.data!)}',
+                                    style: TextStyle(
+                                        backgroundColor: Colors.white,
+                                        color: Colors.black),
+                                  );
                                 } else {
-                                  return const Text('loading');
+                                  return const Text(
+                                    'loading',
+                                    style: TextStyle(
+                                        backgroundColor: Colors.white,
+                                        color: Colors.black),
+                                  );
                                 }
                               },
                             )),
@@ -91,21 +100,43 @@ class _QRViewExampleState extends State<ScanScreen> {
                       Container(
                         margin: const EdgeInsets.all(8),
                         child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.resolveWith((states) {
+                              return Colors.white;
+                            }),
+                          ),
                           onPressed: () async {
                             await controller?.pauseCamera();
                           },
-                          child: const Text('pause',
-                              style: TextStyle(fontSize: 20)),
+                          child: const Text(
+                            'Pause',
+                            style: TextStyle(
+                                backgroundColor: Colors.white,
+                                color: Colors.black,
+                                fontSize: 20),
+                          ),
                         ),
                       ),
                       Container(
                         margin: const EdgeInsets.all(8),
                         child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.resolveWith((states) {
+                              return Colors.white;
+                            }),
+                          ),
                           onPressed: () async {
                             await controller?.resumeCamera();
                           },
-                          child: const Text('resume',
-                              style: TextStyle(fontSize: 20)),
+                          child: const Text(
+                            'Resume',
+                            style: TextStyle(
+                                backgroundColor: Colors.white,
+                                color: Colors.black,
+                                fontSize: 20),
+                          ),
                         ),
                       )
                     ],
