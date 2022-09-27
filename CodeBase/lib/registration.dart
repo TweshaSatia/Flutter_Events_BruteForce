@@ -21,10 +21,6 @@ class _MyRegisterState extends State<MyRegister> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-            image: AssetImage('assets/register.png'), fit: BoxFit.cover),
-      ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
@@ -33,13 +29,10 @@ class _MyRegisterState extends State<MyRegister> {
         ),
         body: Stack(
           children: [
-            Container(
-              padding: EdgeInsets.only(left: 35, top: 30),
-              child: Text(
-                'Create\nAccount',
-                style: TextStyle(color: Colors.white, fontSize: 33),
-              ),
-            ),
+            Image.asset('assets/images/ConnectorLogo.png',
+                height: MediaQuery.of(context).size.height * 0.15,
+                width: MediaQuery.of(context).size.width,
+                fit: BoxFit.fitHeight),
             SingleChildScrollView(
               child: Container(
                 padding: EdgeInsets.only(
@@ -64,8 +57,14 @@ class _MyRegisterState extends State<MyRegister> {
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(
-                                    color: Colors.black,
+                                    color: Colors.white,
                                   ),
+                                ),
+                                label: Text(
+                                  "Name",
+                                  style: TextStyle(
+                                      color:
+                                          Color.fromARGB(255, 143, 143, 146)),
                                 ),
                                 hintText: "Name",
                                 hintStyle: TextStyle(color: Colors.white),
@@ -89,8 +88,14 @@ class _MyRegisterState extends State<MyRegister> {
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(
-                                    color: Colors.black,
+                                    color: Colors.white,
                                   ),
+                                ),
+                                label: Text(
+                                  "Email ID",
+                                  style: TextStyle(
+                                      color:
+                                          Color.fromARGB(255, 143, 143, 146)),
                                 ),
                                 hintText: "Email ID",
                                 hintStyle: TextStyle(color: Colors.white),
@@ -114,8 +119,14 @@ class _MyRegisterState extends State<MyRegister> {
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(
-                                    color: Colors.black,
+                                    color: Colors.white,
                                   ),
+                                ),
+                                label: Text(
+                                  "LinkedIn Profile ID",
+                                  style: TextStyle(
+                                      color:
+                                          Color.fromARGB(255, 143, 143, 146)),
                                 ),
                                 hintText: "LinkedIn Profile ID",
                                 hintStyle: TextStyle(color: Colors.white),
@@ -127,13 +138,13 @@ class _MyRegisterState extends State<MyRegister> {
                             height: 40,
                           ),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               CircleAvatar(
                                 radius: 30,
-                                backgroundColor: Color(0xff4c505b),
+                                backgroundColor: Colors.white,
                                 child: IconButton(
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     onPressed: () {
                                       box.write('name', myControllerName.text);
                                       box.write(

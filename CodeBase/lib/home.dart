@@ -18,6 +18,7 @@ class _CreateScreenState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
         title: Text("Create QR Code"),
         backgroundColor: Colors.black,
@@ -26,9 +27,16 @@ class _CreateScreenState extends State<Home> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
+          Container(
+            child: Text(
+              box.read('name'),
+              style: TextStyle(color: Colors.white, fontSize: 25),
+            ),
+          ),
           // qr code
           BarcodeWidget(
-            color: Colors.black,
+            backgroundColor: Colors.black,
+            color: Colors.white,
             data: box.read('linkedin'),
             height: 250,
             width: 250,
@@ -36,36 +44,24 @@ class _CreateScreenState extends State<Home> {
           ),
           // link
           ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.resolveWith((states) {
+                return Colors.white;
+              }),
+            ),
             onPressed: () {
               Navigator.pushNamed(context, 'scan');
             },
-            child: Text('Expand your network'),
+            child: Text(
+              'Expand your network',
+              style:
+                  TextStyle(backgroundColor: Colors.white, color: Colors.black),
+            ),
           ),
           SizedBox(
             width: MediaQuery.of(context).size.width,
           ),
         ],
-      ),
-    );
-  }
-}
-
-class SecondRoute extends StatelessWidget {
-  const SecondRoute({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Second Route'),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            // Navigate back to first route when tapped.
-          },
-          child: const Text('Go back!'),
-        ),
       ),
     );
   }
